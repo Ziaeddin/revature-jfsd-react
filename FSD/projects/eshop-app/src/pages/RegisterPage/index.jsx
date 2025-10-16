@@ -9,7 +9,7 @@ const RegisterPage = () => {
         // password: "",
         // confirmPassword: ""
     });
-    
+
 
     const onChangeHandler = (e) => {
         console.log(e.target.value);
@@ -48,19 +48,24 @@ const RegisterPage = () => {
                                     onChange={onChangeHandler}
                                     placeholder="Enter last name" />
                             </div>
-                            {/* <div class="form-group">
+                            <div class="form-group">
                                 <label for="email">Email address</label>
                                 <input type="email" class="form-control" id="email" placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" />
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" placeholder="Password" />
                             </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" />
-                            </div> */}
-                            <button type="submit" class="btn btn-primary mt-3">Register</button>
+                            <button type="submit" className="btn btn-primary w-100 mb-3">
+                                Register
+                            </button>
+                            <div className="text-center">
+                                <a href="#" className="text-decoration-none">Already have an account? Login</a>
+                            </div>
                         </form>
                     </div>
 
