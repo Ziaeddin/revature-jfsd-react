@@ -4,27 +4,48 @@ import * as Yup from 'yup';
 import { useFormik, Form, Field, ErrorMessage, Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 
-const initialValues = {
-    email: '',
-    password: ''
-};
-
-const onSubmit = (values) => {
-    console.log('Form data', values);
-};
-
-const validationSchema = Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required!'),
-    password: Yup.string().required('Required!').min(6, 'Password must be at least 6 characters')
-});
-
 const LoginPage = () => {
+    const initialValues = {
+        email: '',
+        password: ''
+    };
+
+    const validationSchema = Yup.object({
+        email: Yup.string().email('Invalid email format').required('Required!'),
+        password: Yup.string().required('Required!').min(6, 'Password must be at least 6 characters')
+    });
+
+    const [requestResponse, setRequestResponse] = useState({
+        message: '',
+        alertClass: ''
+    });
+
+    const onSubmit = (values) => {
+        axios.post('https://api.escuelajs.co/api/v1/auth/login', values)
+            .then((response) => {
+                console.log('Login successful:', response.data);
+                setRequestResponse({
+                    message: 'Login successful',
+                    alertClass: 'alert alert-success'
+                });
+            })
+            .catch((error) => {
+                console.error('There was an error logging in!', error);
+                setRequestResponse({
+                    message: 'Login failed, Try again!',
+                    alertClass: 'alert alert-danger'
+                });
+            });
+    };
     return (
         <div className="container">
             <div className="row justify-content-center align-items-center min-vh-100">
                 <div className="col-md-4">
                     <div className="card shadow">
                         <div className="card-body p-4">
+                            <div className={requestResponse.alertClass} role="alert">
+                                {requestResponse.message}
+                            </div>
                             <h3 className="card-title text-center mb-4">Login</h3>
                             <hr />
                             <Formik initialValues={initialValues}
