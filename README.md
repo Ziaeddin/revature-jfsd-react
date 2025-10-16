@@ -6,7 +6,7 @@ This workspace contains multiple React exercises and projects. Each project live
 
 ## Link to the exercises
 
-[simple profile page](FSD/exercises/class6/q5-profile-page-app)
+[simple profile page](FSD/exercises/q5-profile-page-app)
 
 ## Link to the projects
 
