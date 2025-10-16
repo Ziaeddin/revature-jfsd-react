@@ -27,7 +27,8 @@ const RegisterPage = () => {
     const formik = useFormik({
         initialValues,
         onSubmit,
-        validationSchema
+        validationSchema,
+        validateOnMount: true,
     });
 
     return (
@@ -41,7 +42,7 @@ const RegisterPage = () => {
                             <div class="form-group">
                                 <label>First Name</label>
                                 <input type="text"
-                                    class="form-control"
+                                    class={formik.touched.firstName && formik.errors.firstName ? 'form-control is-invalid' : 'form-control'}
                                     name="firstName"
                                     value={formik.values.firstName}
                                     onChange={formik.handleChange}
@@ -54,7 +55,7 @@ const RegisterPage = () => {
                             <div class="form-group">
                                 <label>Email address</label>
                                 <input type="email"
-                                    class="form-control"
+                                    class={formik.touched.email && formik.errors.email ? 'form-control is-invalid' : 'form-control'}
                                     name="email"
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
@@ -67,7 +68,7 @@ const RegisterPage = () => {
                             <div class="form-group">
                                 <label>Mobile</label>
                                 <input type="text"
-                                    class="form-control"
+                                    class={formik.touched.mobile && formik.errors.mobile ? 'form-control is-invalid' : 'form-control'}
                                     name="mobile"
                                     value={formik.values.mobile}
                                     onChange={formik.handleChange}
@@ -80,7 +81,7 @@ const RegisterPage = () => {
                             <div class="form-group">
                                 <label>Password</label>
                                 <input type="password"
-                                    class="form-control"
+                                    class={formik.touched.password && formik.errors.password ? 'form-control is-invalid' : 'form-control'}
                                     name="password"
                                     value={formik.values.password}
                                     onChange={formik.handleChange}
