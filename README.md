@@ -1,8 +1,8 @@
-# revature-jfsd-react
+# JFSD-React
 
 Repository: https://github.com/Ziaeddin/revature-jfsd-react.git
 
-This workspace contains multiple React exercises and projects. Each project lives in its own folder (for example `Class6/q5-profile-page`).
+This workspace contains multiple React exercises and projects. Each project lives in its own folder.
 
 ## Link to the exercises
 
