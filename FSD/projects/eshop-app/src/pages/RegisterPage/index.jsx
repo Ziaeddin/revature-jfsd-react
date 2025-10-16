@@ -2,6 +2,7 @@ import react, { useState } from 'react';
 import './styles.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
 
@@ -34,7 +35,7 @@ const RegisterPage = () => {
     return (
         <div class="container">
             <div class="row justify-content-center align-items-center min-vh-100">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="wrapper">
                         <h2>Register</h2>
                         <hr />
@@ -91,11 +92,11 @@ const RegisterPage = () => {
                                     <div className='text-danger'>{formik.errors.password}</div>
                                 ) : null}
                             </div>
-                            <button type="submit" className="btn btn-primary w-100 mb-3">
+                            <button type="submit" value="Register" disabled={!(formik.isValid && formik.dirty)} className="btn btn-primary w-100 mb-3">
                                 Register
                             </button>
                             <div className="text-center">
-                                <a href="#" className="text-decoration-none">Already have an account? Login</a>
+                                <Link to="/login" className="text-decoration-none">Already have an account? Login</Link>
                             </div>
                         </form>
                     </div>
