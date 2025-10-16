@@ -45,7 +45,11 @@ const RegisterPage = () => {
                                     name="firstName"
                                     value={formik.values.firstName}
                                     onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                     placeholder="Enter first name" />
+                                {formik.touched.firstName && formik.errors.firstName ? (
+                                    <div className='text-danger'>{formik.errors.firstName}</div>
+                                ) : null}
                             </div>
                             <div class="form-group">
                                 <label>Email address</label>
@@ -54,7 +58,11 @@ const RegisterPage = () => {
                                     name="email"
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                     placeholder="Enter email" />
+                                {formik.touched.email && formik.errors.email ? (
+                                    <div className='text-danger'>{formik.errors.email}</div>
+                                ) : null}
                             </div>
                             <div class="form-group">
                                 <label>Mobile</label>
@@ -63,7 +71,11 @@ const RegisterPage = () => {
                                     name="mobile"
                                     value={formik.values.mobile}
                                     onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                     placeholder="Enter Mobile Number" />
+                                {formik.touched.mobile && formik.errors.mobile ? (
+                                    <div className='text-danger'>{formik.errors.mobile}</div>
+                                ) : null}
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
@@ -72,7 +84,11 @@ const RegisterPage = () => {
                                     name="password"
                                     value={formik.values.password}
                                     onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                                     placeholder="Password" />
+                                {formik.touched.password && formik.errors.password ? (
+                                    <div className='text-danger'>{formik.errors.password}</div>
+                                ) : null}
                             </div>
                             <button type="submit" className="btn btn-primary w-100 mb-3">
                                 Register
