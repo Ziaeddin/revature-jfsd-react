@@ -10,6 +10,8 @@ const LoginPage = () => {
         password: ''
     };
 
+    const navigate = useNavigate();
+
     const validationSchema = Yup.object({
         email: Yup.string().email('Invalid email format').required('Required!'),
         password: Yup.string().required('Required!').min(6, 'Password must be at least 6 characters')
@@ -28,6 +30,8 @@ const LoginPage = () => {
                     message: 'Login successful',
                     alertClass: 'alert alert-success'
                 });
+                localStorage.setItem('token', response.data.access_token);
+                navigate('/');
             })
             .catch((error) => {
                 console.error('There was an error logging in!', error);
