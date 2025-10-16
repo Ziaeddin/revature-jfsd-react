@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "workspaces": [
+    "FSD/exercises/class6/q5-profile-page-app",
+	"FSD/projects/eshop-app"
+  ]
+}
