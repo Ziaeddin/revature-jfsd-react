@@ -1,64 +1,78 @@
 import react, { useState } from 'react';
+import './styles.css';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const RegisterPage = () => {
 
-    const [user, setUser] = useState({
-        firstName: "",
-        lastName: "",
-        // email: "",
-        // password: "",
-        // confirmPassword: ""
-    });
+    const initialValues = {
+        firstName: '',
+        email: '',
+        mobile: '',
+        password: ''
+    };
 
-
-    const onChangeHandler = (e) => {
-        console.log(e.target.value);
-        console.log(e.target.name);
-        setUser({ ...user, [e.target.name]: e.target.value });
+    const onSubmit = (values) => {
+        console.log('Form data', values);
     }
 
+    const validationSchema = Yup.object({
+        firstName: Yup.string().required('First Name is required'),
+        email: Yup.string().email('Invalid email format').required('Email is required'),
+        mobile: Yup.string().required('Mobile Number is required')
+            .length(10, 'Mobile Number must be 10 digits'),
+        password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required')
+    });
+
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validationSchema
+    });
 
     return (
         <div class="container">
-            <div class="row">
-                <div class="col-md-3"></div>
+            <div class="row justify-content-center align-items-center min-vh-100">
                 <div class="col-md-6">
                     <div class="wrapper">
-                        <h2 class="mb-3">Register</h2>
+                        <h2>Register</h2>
                         <hr />
-                        <h1>{user.firstName} {user.lastName}</h1>
-                        <form>
+                        <form onSubmit={formik.handleSubmit}>
                             <div class="form-group">
-                                <label for="firstName">First Name</label>
+                                <label>First Name</label>
                                 <input type="text"
                                     class="form-control"
                                     name="firstName"
-                                    id="firstName"
-                                    value={user.firstName}
-                                    onChange={onChangeHandler}
+                                    value={formik.values.firstName}
+                                    onChange={formik.handleChange}
                                     placeholder="Enter first name" />
                             </div>
                             <div class="form-group">
-                                <label for="lastName">Last Name</label>
+                                <label>Email address</label>
+                                <input type="email"
+                                    class="form-control"
+                                    name="email"
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
+                                    placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile</label>
                                 <input type="text"
                                     class="form-control"
-                                    name="lastName"
-                                    id="lastName"
-                                    value={user.lastName}
-                                    onChange={onChangeHandler}
-                                    placeholder="Enter last name" />
+                                    name="mobile"
+                                    value={formik.values.mobile}
+                                    onChange={formik.handleChange}
+                                    placeholder="Enter Mobile Number" />
                             </div>
                             <div class="form-group">
-                                <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" />
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" />
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Password" />
+                                <label>Password</label>
+                                <input type="password"
+                                    class="form-control"
+                                    name="password"
+                                    value={formik.values.password}
+                                    onChange={formik.handleChange}
+                                    placeholder="Password" />
                             </div>
                             <button type="submit" className="btn btn-primary w-100 mb-3">
                                 Register
