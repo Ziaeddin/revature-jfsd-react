@@ -13,7 +13,7 @@ A modern e-commerce web application built with React.js featuring user authentic
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: React.js (v19.2.0)
+- **Frontend**: React.js 
 - **Routing**: React Router DOM
 - **Styling**: Bootstrap 4.6
 - **Form Management**: Formik with Yup validation
