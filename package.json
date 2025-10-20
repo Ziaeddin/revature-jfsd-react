@@ -2,6 +2,7 @@
   "private": true,
   "workspaces": [
     "FSD/exercises/q5-profile-page-app",
-	"FSD/projects/eshop-app"
+	"FSD/projects/eshop-app",
+	"FSD/exercises/c10-test4-redux-app"
   ]
 }

@@ -7,6 +7,7 @@ This workspace contains multiple React exercises and projects. Each project live
 ## Link to the exercises
 
 [simple profile page](FSD/exercises/q5-profile-page-app)
+[Test redux functionality in react](FSD/exercises/c10-test4-redux-app)
 
 ## Link to the projects
 
