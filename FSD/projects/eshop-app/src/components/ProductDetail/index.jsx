@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/actions/cart-action";
 
 
 const ProductDetail = () => {
 
+    const dispatch = useDispatch();
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const fetchProductDetails = () => {
@@ -22,6 +25,10 @@ const ProductDetail = () => {
         
         fetchProductDetails();
     }, [id]);
+
+    const onAddToCartHandler = () => {
+        dispatch(addToCart(product));
+    };
 
     return (
 
@@ -42,7 +49,7 @@ const ProductDetail = () => {
                             <p className="text-muted mb-1"> {product?.category?.name}</p>
                             <p className="card-text small mb-3">{product?.description}</p>
                             <h4 className="text-success fw-bold mb-3">{"$" + (product?.price ?? "")}</h4>
-                            <button className="btn btn-primary w-100">
+                            <button onClick={onAddToCartHandler} className="btn btn-primary w-100">
                                 <i className="bi bi-cart"></i> Add to Cart
                             </button>
                         </div>
