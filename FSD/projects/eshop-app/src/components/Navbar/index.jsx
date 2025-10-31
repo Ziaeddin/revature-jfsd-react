@@ -1,25 +1,16 @@
 import {Link, useNavigate} from "react-router-dom";
-import React, {useState,useEffect} from "react";
+import React from "react";
 import { useSelector } from "react-redux";
+import authService from "../../services/authService";
 
 
 const Navbar = () => { 
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isAuthenticated, username } = useSelector((state) => state.auth);
     const cartItemsCount = useSelector((state) => state.cart.cartItemsCount);
-
-    useEffect(() => {
-        let token = localStorage.getItem('token');
-        if (token) {
-            // Optionally, you can verify the token's validity here
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
-    }, [isLoggedIn]);
+    
     const handleLogout = () => { 
-        localStorage.removeItem('token');
-        setIsLoggedIn(false);
+        authService.logout();
         navigate('/login');
     }
 
@@ -54,12 +45,12 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="d-flex">
-                    {isLoggedIn ? ( 
+                    {isAuthenticated ? ( 
                         <>
-                            {/* <Link to="/profile" className="btn btn-outline-light me-2">
-                                <i className="bi bi-person me-1"></i>
-                                Profile
-                            </Link> */}
+                            <span className="navbar-text text-light me-3">
+                                <i className="bi bi-person-circle me-1"></i>
+                                Welcome, {username}
+                            </span>
                             <button onClick={handleLogout} className="btn btn-outline-danger">
                                 <i className="bi bi-box-arrow-right me-1"></i>
                                 Logout

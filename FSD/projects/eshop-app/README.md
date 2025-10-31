@@ -1,4 +1,9 @@
-#  Capstone Project Document
+#  E-Shop Project Document
+
+## 🔗 **Backend Repository**
+**Backend Source Code:** [revature-jfsd-microservice/eshop-microservice](https://github.com/Ziaeddin/revature-jfsd-microservice/tree/main/projects/eshop-microservice)
+
+---
 
 ## **Project Title:** ShopEase — A Simple E-Commerce Web Application
 

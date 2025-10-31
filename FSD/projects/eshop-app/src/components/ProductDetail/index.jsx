@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./style.css";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cart-action";
+import externalApiService from "../../services/externalApiService";
+// import productService from "../../services/productService"; // For backend API
 
 
 const ProductDetail = () => {
@@ -11,15 +12,25 @@ const ProductDetail = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const [product, setProduct] = useState({});
+    
     const fetchProductDetails = () => {
-            axios.get(`https://api.escuelajs.co/api/v1/products/${id}`)
-                .then((response) => {
-                    setProduct(response.data);
-                })
-                .catch((error) => {
-                    console.error('Error fetching product:', error);
-                });
-        };
+        // Using external API service (no token)
+        externalApiService.get(`https://api.escuelajs.co/api/v1/products/${id}`)
+            .then((response) => {
+                setProduct(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching product:', error);
+            });
+        
+        // productService.getProductById(id)
+        //     .then((data) => {
+        //         setProduct(data);
+        //     })
+        //     .catch((error) => {
+        //         console.error('Error fetching product:', error);
+        //     });
+    };
 
     useEffect(() => {
         
