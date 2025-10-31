@@ -1,10 +1,12 @@
 import {Link, useNavigate} from "react-router-dom";
 import React, {useState,useEffect} from "react";
+import { useSelector } from "react-redux";
 
 
 const Navbar = () => { 
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const cartItemsCount = useSelector((state) => state.cart.cartItemsCount);
 
     useEffect(() => {
         let token = localStorage.getItem('token');
@@ -38,6 +40,16 @@ const Navbar = () => {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/contact">Contact</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link position-relative" to="/cart">
+                                <i className="bi bi-cart3"></i> Cart
+                                {cartItemsCount > 0 && (
+                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {cartItemsCount}
+                                    </span>
+                                )}
+                            </Link>
                         </li>
                     </ul>
                 </div>
